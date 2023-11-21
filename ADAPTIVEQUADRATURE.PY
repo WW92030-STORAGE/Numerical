@@ -15,7 +15,7 @@ def aq_trapezoid(func, a, b, a0, b0, T):
     hx = trapezoid(func, a, b)
     if abs(h0 + h1 - hx) > 3 * T * H / H0:
         return aq_trapezoid(func, a, M, a0, b0, T) + aq_trapezoid(func, M, b, a0, b0, T)
-    return hx
+    return h0 + h1
 
 def aq_simpson(func, a, b, a0, b0, T): # SIMPSON
     H0 = b0 - a0
@@ -26,7 +26,7 @@ def aq_simpson(func, a, b, a0, b0, T): # SIMPSON
     hx = simpson(func, a, b)
     if abs(h0 + h1 - hx) > 15 * T * H / H0: # Simpson's rule : 3 --> 15
         return aq_simpson(func, a, M, a0, b0, T) + aq_simpson(func, M, b, a0, b0, T)
-    return hx
+    return h0 + h1
     
 def integral_trapezoid(func, a, b, T):
     return aq_trapezoid(func, a, b, a, b, T)
